@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PWA App</title>
+    <link href="output.css" rel="stylesheet">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#000000">
+    <link rel="apple-touch-icon" href="../icons/icon-192x192.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <script src="js/search.js" defer></script>
+</head>
+<body class="flex flex-col min-h-screen bg-white dark:bg-gray-900 transition-all duration-300 ease-in-out font-inter">
+    <!-- Header with Logo and Burger Menu -->
+    <header class="relative bg-white dark:bg-gray-800 shadow-md transition-all duration-300 ease-in-out">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="mx-auto">
+                <img src="https://via.placeholder.com/150x50" alt="Logo" class="h-12">
+            </div>
+            <!-- Dark Mode Toggle -->
+            <button id="darkModeToggle" class="absolute left-4 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-800 dark:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+            </button>
+            <!-- Burger Menu Button -->
+            <button id="menuButton" class="absolute right-4 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-800 dark:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-16 6h16" />
+                </svg>
+            </button>
+        </div>
+
+
+        
+        <!-- Slide-in Menu -->
+        <div id="slideMenu" class="fixed top-0 right-0 w-80 h-full bg-white dark:bg-gray-800 shadow-lg transform translate-x-full transition-all duration-300 ease-in-out z-50">
+            <div class="flex flex-col h-full">
+                <div class="flex justify-between items-center p-6 border-b border-gray-200 dark:border-gray-700">
+                    <h2 class="text-xl font-semibold text-gray-800 dark:text-white">Menu</h2>
+                    <button id="closeMenu" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-800 dark:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <nav class="flex-1 p-6">
+                    <ul class="space-y-4">
+                        <li>
+                            <a href="#" class="flex items-center space-x-3 text-gray-800 dark:text-white hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-200">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                                </svg>
+                                <span>Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-center space-x-3 text-gray-800 dark:text-white hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-200">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span>About</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-center space-x-3 text-gray-800 dark:text-white hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-200">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                                <span>Contact</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="p-6 border-t border-gray-200 dark:border-gray-700">
+                    <p class="text-sm text-gray-500 dark:text-gray-400"> 2024 Wine App. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 container mx-auto px-4 py-8">
+        <!-- Search Bar -->
+        <div class="w-full max-w-[1200px] mx-auto px-4 md:px-0">
+            <!-- Search Input Wrapper -->
+            <div id="searchWrapper" class="relative w-full mb-8">
+                <div class="relative flex items-center">
+                    <input type="text" id="searchInput" 
+                        class="w-full p-4 md:p-3 pr-12 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent dark:text-white transition-all duration-300"
+                        placeholder="Search...">
+                    <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                        <i class="fas fa-search text-gray-400"></i>
+                    </div>
+                </div>
+
+                <!-- Search Results Container -->
+                <div id="searchResults" class="absolute z-50 w-full mt-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg overflow-hidden hidden">
+                    <!-- Results will be populated here -->
+                </div>
+            </div>
+
+            <!-- Filter buttons -->
+            <div class="w-full flex justify-center gap-2 mb-8 mt-4 overflow-x-auto px-4 md:px-0">
+                <button class="px-8 py-3 bg-blue-50 dark:bg-gray-800 rounded-lg hover:bg-blue-100 dark:hover:bg-gray-700 transition-colors duration-300 group">
+                    <i class="fab fa-facebook-f text-gray-900 dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300 text-lg"></i>
+                </button>
+                <button class="px-8 py-3 bg-blue-50 dark:bg-gray-800 rounded-lg hover:bg-blue-100 dark:hover:bg-gray-700 transition-colors duration-300 group">
+                    <i class="fab fa-linkedin-in text-gray-900 dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300 text-lg"></i>
+                </button>
+                <button class="px-8 py-3 bg-blue-50 dark:bg-gray-800 rounded-lg hover:bg-blue-100 dark:hover:bg-gray-700 transition-colors duration-300 group">
+                    <i class="fab fa-youtube text-gray-900 dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300 text-lg"></i>
+                </button>
+                <button class="px-8 py-3 bg-blue-50 dark:bg-gray-800 rounded-lg hover:bg-blue-100 dark:hover:bg-gray-700 transition-colors duration-300 group">
+                    <i class="fas fa-blog text-gray-900 dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300 text-lg"></i>
+                </button>
+                <button class="px-8 py-3 bg-blue-50 dark:bg-gray-800 rounded-lg hover:bg-blue-100 dark:hover:bg-gray-700 transition-colors duration-300 group">
+                    <i class="fab fa-github text-gray-900 dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300 text-lg"></i>
+                </button>
+                <button class="px-8 py-3 bg-blue-50 dark:bg-gray-800 rounded-lg hover:bg-blue-100 dark:hover:bg-gray-700 transition-colors duration-300 group">
+                    <i class="fas fa-podcast text-gray-900 dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300 text-lg"></i>
+                </button>
+                <button class="px-8 py-3 bg-blue-50 dark:bg-gray-800 rounded-lg hover:bg-blue-100 dark:hover:bg-gray-700 transition-colors duration-300 group">
+                    <i class="fas fa-ellipsis text-gray-900 dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300 text-lg"></i>
+                </button>
+            </div>
+
+        <!-- Grid Container -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Card 1 -->
+            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 fade-in-up animate-delay-0">
+                <div class="relative">
+                    <img class="w-full h-48 object-cover rounded-t-2xl" src="https://images.unsplash.com/photo-1543699936-c901ddbf0c05" alt="Wine Cellar">
+                </div>
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-3 leading-tight">Wine Cellar Experience</h2>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">Discover our carefully curated selection of wines in our historic cellar.</p>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 fade-in-up animate-delay-200">
+                <div class="relative">
+                    <img class="w-full h-48 object-cover rounded-t-2xl" src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3" alt="Wine Tasting">
+                </div>
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-3 leading-tight">Wine Tasting Events</h2>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">Join our expert-led tasting sessions and expand your wine knowledge.</p>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 fade-in-up animate-delay-400">
+                <div class="relative">
+                    <img class="w-full h-48 object-cover rounded-t-2xl" src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb" alt="Vineyard">
+                </div>
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-3 leading-tight">Vineyard Tours</h2>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">Experience the beauty of our vineyards with guided tours.</p>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 fade-in-up animate-delay-100">
+                <div class="relative">
+                    <img class="w-full h-48 object-cover rounded-t-2xl" src="https://images.unsplash.com/photo-1528823872057-9c018a7a7553" alt="Wine Bottles">
+                </div>
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-3 leading-tight">Premium Selection</h2>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">Browse our collection of rare and premium wines.</p>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 fade-in-up animate-delay-300">
+                <div class="relative">
+                    <img class="w-full h-48 object-cover rounded-t-2xl" src="https://images.unsplash.com/photo-1567072629554-20e689de2400" alt="Food Pairing">
+                </div>
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-3 leading-tight">Food & Wine Pairing</h2>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">Learn the art of pairing wines with complementary dishes.</p>
+                </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 fade-in-up animate-delay-500">
+                <div class="relative">
+                    <img class="w-full h-48 object-cover rounded-t-2xl" src="https://images.unsplash.com/photo-1560148218-1a83060f7b32" alt="Wine Club">
+                </div>
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-3 leading-tight">Wine Club</h2>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">Join our exclusive wine club for special access and events.</p>
+                </div>
+            </div>
+
+            <!-- Card 7 -->
+            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 fade-in-up animate-delay-200">
+                <div class="relative">
+                    <img class="w-full h-48 object-cover rounded-t-2xl" src="https://images.unsplash.com/photo-1516594915697-87eb3b1c14ea" alt="Wine Education">
+                </div>
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-3 leading-tight">Wine Education</h2>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">Expand your knowledge with our wine education programs.</p>
+                </div>
+            </div>
+
+            <!-- Card 8 -->
+            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 fade-in-up animate-delay-400">
+                <div class="relative">
+                    <img class="w-full h-48 object-cover rounded-t-2xl" src="https://images.unsplash.com/photo-1547595628-c61a29f496f0" alt="Private Events">
+                </div>
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-3 leading-tight">Private Events</h2>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">Host your special occasions in our elegant wine venues.</p>
+                </div>
+            </div>
+
+            <!-- Card 9 -->
+            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 fade-in-up animate-delay-600">
+                <div class="relative">
+                    <img class="w-full h-48 object-cover rounded-t-2xl" src="https://images.unsplash.com/photo-1507434965515-61970f2bd7c6" alt="Seasonal Events">
+                </div>
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-3 leading-tight">Seasonal Events</h2>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">Experience our special seasonal wine tastings and events.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-900 text-white py-4 transition-all duration-300 ease-in-out">
+        <div class="container mx-auto px-4 text-center">
+            <p> 2024 All rights reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Menu functionality
+        const menuButton = document.getElementById('menuButton');
+        const closeMenu = document.getElementById('closeMenu');
+        const slideMenu = document.getElementById('slideMenu');
+        
+        menuButton.addEventListener('click', () => {
+            slideMenu.classList.remove('translate-x-full');
+        });
+        
+        closeMenu.addEventListener('click', () => {
+            slideMenu.classList.add('translate-x-full');
+        });
+
+        // Dark mode functionality
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const html = document.documentElement;
+        
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'true' || 
+            (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.remove('light');
+            html.classList.add('dark');
+        }
+
+        darkModeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.setItem('darkMode', html.classList.contains('dark'));
+        });
+    </script>
+</body>
+</html>
